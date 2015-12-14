@@ -1,0 +1,11 @@
+.label{
+	&.label-base{
+		background-color: #337ab7;
+	}
+	&.label-extend{
+		background-color: #5bc0de;
+	}
+	&.label-custom{
+		background-color: #f0ad4e;
+	}
+}

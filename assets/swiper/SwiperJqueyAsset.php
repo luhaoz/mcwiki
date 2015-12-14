@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
-namespace app\assets;
+namespace app\assets\swiper;
 
 use yii\web\AssetBundle;
 
@@ -13,22 +13,20 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class SwiperJqueyAsset extends AssetBundle
 {
 
-    public $basePath = '@webroot';
-
-    public $baseUrl = '@web';
+    public $sourcePath = '@bower/Swiper/dist';
 
     public $css = [
-        'css/non-responsive.css',
-        'css/main.css'
+        'css/swiper.min.css'
     ];
 
-    public $js = [];
+    public $js = [
+        'js/swiper.jquery.min.js'
+    ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset'
+        'yii\web\JqueryAsset'
     ];
 }

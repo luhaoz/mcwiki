@@ -16,6 +16,7 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -26,27 +27,27 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'MC Wiki',
+        'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav nav'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => '精选消息', 'url' => ['/site/index']],
-            ['label' => 'Mod', 'url' => ['/site/about']],
-            ['label' => '文章', 'url' => ['/site/contact']],
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+            Yii::$app->user->isGuest ?
+                ['label' => 'Login', 'url' => ['/site/login']] :
+                [
+                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']
+                ],
         ],
     ]);
-    
-    echo Html::beginForm(['resource/search'], 'get', ['class' => 'navbar-form navbar-right' ,'role' => 'search']);
-        echo Html::beginTag('div',['class' => 'form-group has-feedback']);
-            echo Html::textInput('search-resource','',['class' =>'form-control','data-role' => 'tagsinput']);
-            echo Html::tag('span','',['class' => 'glyphicon glyphicon-search form-control-feedback','aria-hidden' => true]);
-        echo Html::endTag('div');
-    echo Html::endForm();
     NavBar::end();
     ?>
 
@@ -62,7 +63,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p> 
+        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

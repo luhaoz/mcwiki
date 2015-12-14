@@ -1,0 +1,37 @@
+@import "part/component/label";
+.component{
+    &.component-swiper{
+        .swiper-wrapper{
+            .swiper-slide{
+                height:427px;
+            }
+        }
+    }
+
+    &.component-resource-list{
+        .resource-item{
+            .resource-title{
+                padding:0 9px;
+            }
+            .resource-body{
+                height:150px;
+                overflow: hidden;
+            }
+            .resource-tags{
+                .label{
+                    display: inline-block;
+                    margin:{
+                        left:5px;
+                    }
+                }
+            }
+            .resource-footer{
+                padding:{
+                    left: 9px;
+                    right: 9px;
+                    bottom: 9px;
+                }
+            }
+        }
+    }
+}

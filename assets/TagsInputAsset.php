@@ -13,22 +13,22 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class TagsInputAsset extends AssetBundle
 {
 
-    public $basePath = '@webroot';
-
-    public $baseUrl = '@web';
+    public $sourcePath = '@bower/bootstrap-tagsinput/dist';
 
     public $css = [
-        'css/non-responsive.css',
-        'css/main.css'
+        'bootstrap-tagsinput.css'
     ];
 
-    public $js = [];
+    public $js = [
+        'bootstrap-tagsinput.min.js'
+    ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset'
+        'yii\web\JqueryAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset'
     ];
 }

@@ -3,10 +3,11 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id' => 'basic',
+    'id' => 'McWiki',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'components' => [
+    'defaultRoute' => 'index',
+    'components' => [   
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '8Lgdwpvb8vHVM7z0iKWXkBrMyJWbIgIM',
@@ -26,7 +27,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'system/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -45,6 +46,20 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'assetManager' => [
+            'bundles'=>[
+                'yii\web\JqueryAsset'=>[
+                    'jsOptions'=>[
+                        'position'=>\yii\web\View::POS_HEAD,
+                    ]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset'=>[
+                    'jsOptions'=>[
+                        'position'=>\yii\web\View::POS_HEAD,
+                    ]
+                ]
+            ]
+        ]
     ],
     'params' => $params,
 ];
