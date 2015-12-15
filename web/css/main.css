@@ -89,6 +89,9 @@ a.desc:after {
 .label.label-custom {
   background-color: #f0ad4e; }
 
+.test-block {
+  height: 900px; }
+
 .component.component-swiper .swiper-wrapper .swiper-slide {
   height: 427px; }
 .component.component-resource-list .resource-item .resource-title {
@@ -103,5 +106,15 @@ a.desc:after {
   padding-left: 9px;
   padding-right: 9px;
   padding-bottom: 9px; }
+.component.component-modal .modal-dialog-toolbar {
+  position: relative;
+  text-align: right; }
+  .component.component-modal .modal-dialog-toolbar .modal-dialog-toolbar-group {
+    position: fixed;
+    right: -64px; }
+.component.component-modal .modal-dialog-block {
+  margin: 10px auto; }
+.component.component-modal.modal-fluid .modal-dialog-block {
+  width: 1170px; }
 
 /*# sourceMappingURL=main.css.map */

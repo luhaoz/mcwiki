@@ -1,4 +1,7 @@
 @import "part/component/label";
+.test-block{
+    height: 900px;
+}
 .component{
     &.component-swiper{
         .swiper-wrapper{
@@ -33,5 +36,25 @@
                 }
             }
         }
+    }
+
+    &.component-modal{
+        .modal-dialog-toolbar{
+            position: relative;
+            text-align: right;
+            .modal-dialog-toolbar-group{
+                position: fixed;
+                right:-64px;
+            }
+        }
+        .modal-dialog-block{
+            margin:10px auto;
+        }
+        &.modal-fluid{
+            .modal-dialog-block{
+                width: map-get($globalConfig,'base-width');
+            }
+        }
+        
     }
 }
