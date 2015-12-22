@@ -1,21 +1,21 @@
 <?php
 use yii\base\Widget;
 use yii\data\ArrayDataProvider;
+yii\widgets\PjaxAsset::register($this);
 app\assets\TagsInputAsset::register($this);
+app\assets\NProgressAsset::register($this);
 ?>
 <div class="row region region-swiper">
 	<div class="col-xs-9">
 		<div class="panel panel-default component component-swiper">
 			<div class="panel-body">
-				<?= app\components\widgets\swiper\Swiper::widget([
-				    'id' => 'home-swiper',
-				    'itemView' => '@widget.swiper/item/baseSlide',
-                    'slides' => [
-                        ['model' => ['id' => 1],'itemView' => '@widget.swiper/item/detailSlide'],
-                        ['model' => ['id' => 1]],
-                        ['model' => ['id' => 1]],
-                        ['model' => ['id' => 1]],
-				    ]
+				<?= cwidget\swiper\Swiper::widget(['id' => 'home-swiper','itemView' => '@cwidget/swiper/item/baseSlide',
+				    'slides' => [
+    				    ['model' => ['id' => 1],'itemView' => '@cwidget/swiper/item/baseSlide'],
+    				    ['model' => ['id' => 1]],
+    				    ['model' => ['id' => 1]],
+    				    ['model' => ['id' => 1]]
+    				]
 				])?>
 			</div>
 		</div>
@@ -84,70 +84,70 @@ $data = new ArrayDataProvider([
 
 <div class="row region region-mod">
 	<div class="col-xs-12">
-		<div class="row component component-resource-list">
-        	<?=app\components\widgets\resource\ResourceList::widget(['dataProvider' => $data,'itemView' => '@widget.resource/item/long'])?>
-		</div>
+		<?= cwidget\resource\ResourceList::widget(['dataProvider' => $data,'itemView' => '@cwidget/resource/item/long'])?>
 	</div>
 </div>
 <div class="row region region-mod">
 	<div class="col-xs-12">
-		<div class="row component component-resource-list">
-    		<?=app\components\widgets\resource\ResourceList::widget(['dataProvider' => $data,'itemView' => '@widget.resource/item/thumbnail'])?>
-		</div>
+		<?= cwidget\resource\ResourceList::widget(['dataProvider' => $data,'itemView' => '@cwidget/resource/item/thumbnail'])?>
 	</div>
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade component component-modal modal-fluid component-resource-detail " id="myModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-dialog-block modal-dialog-toolbar" role="document">
-		<div class="btn-group modal-dialog-tool-group " role="group" aria-label="...">
-          <button type="button" class="btn btn-default modal-dialog-tool-item"><i class="glyphicon glyphicon-heart"></i></button>
-          <button type="button" class="btn btn-default modal-dialog-tool-item"><i class="glyphicon glyphicon-star-empty"></i></button>
-          <button type="button" class="btn btn-default modal-dialog-tool-item"><i class="glyphicon glyphicon-remove"></i></button>
-        </div>
+<div class="modal fade component component-modal modal-fluid component-resource-detail"id="resource-detail" tabindex="-1" role="dialog">
+	<div class="modal-dialog-toolbar-static">
+		<div class="modal-dialog-block modal-dialog-toolbar" role="document">
+			<div class="btn-group btn-group-vertical modal-dialog-toolbar-group" role="group">
+				<button type="button" class="btn btn-default modal-dialog-tool-item">
+					<i class="glyphicon glyphicon-heart"></i>
+				</button>
+				<button type="button" class="btn btn-default modal-dialog-tool-item">
+					<i class="glyphicon glyphicon-star-empty"></i>
+				</button>
+				<button type="button" class="btn btn-default modal-dialog-tool-item modal-close">
+					<i class="glyphicon glyphicon-remove "></i>
+				</button>
+			</div>
+		</div>
 	</div>
-	<div class="modal-dialog modal-dialog-block" role="document">
-    		<div class="modal-content">
-    			<div class="modal-body">
-    				<div class="panel panel-default component component-swiper">
-                			<div class="panel-body">
-                				<?= app\components\widgets\swiper\Swiper::widget([
-                				    'id' => 'detail-swiper',
-                				    'itemView' => '@widget.swiper/item/baseSlide',
-                                    'slides' => [
-                                        ['model' => ['id' => 1],'itemView' => '@widget.swiper/item/detailSlide'],
-                                        ['model' => ['id' => 1]],
-                                        ['model' => ['id' => 1]],
-                                        ['model' => ['id' => 1]],
-                				    ]
-                				])?>
-                			</div>
-                		</div>
-    			</div>
-    		</div>
-    	</div>
-    	<div class="modal-dialog modal-dialog-block" role="document">
-    		<div class="modal-content">
-    			<div class="modal-body">
-    				<h1>喵呜方块</h1>
-    			</div>
-    		</div>
-    	</div>
-    	<div class="modal-dialog modal-dialog-block" role="document">
-    		<div class="modal-content">
-    			<div class="modal-body">
-    				<h1>喵呜评论</h1>
-    			</div>
-    		</div>
-    	</div>
+<div id="pjax-dialog-block-body">
+</div>
 </div>
 
 
 <script type="text/javascript">
 $(document).ready(function () {
-	$('.resource-item').click(function(){
-		$('#myModal').modal('show');
+	$('#pjax-dialog-block-body').on('pjax:complete', function() {
+		$('#resource-detail').modal('show');
 	});
+	$('.resource-item').click(function(){
+		NProgress.start();
+		$url = $(this).find('.item-detail-href').attr('href');
+			$.pjax({url:'<?= Yii::$app->urlManager->createUrl('resource')?>', container: '#pjax-dialog-block-body'});
+		return false;
+		//
+	});
+	/*
+	$('#pjax-dialog-block-body').on('pjax:complete', function() {
+		$('#resource-detail').modal('show');
+	});
+	$('#pjax-dialog-block-body').on('pjax:popstate', function() {
+		$('#resource-detail').modal('hide');
+	});
+	$('.resource-item').click(function(){
+		NProgress.start();
+		$url = 
+		return false;
+		//$.pjax({url:'<?= Yii::$app->urlManager->createUrl('resource')?>', container: '#pjax-dialog-block-body'});
+	});
+	$('#resource-detail').on('hidden.bs.modal',function(){
+		NProgress.done();
+	});
+	$('.modal-close').click(function(){
+		$(this).parents('.modal').modal('hide');
+		history.go(-1);
+	});
+	*/
 });
 </script>

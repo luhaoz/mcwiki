@@ -19,7 +19,7 @@ use \yii\helpers\ArrayHelper;
 	</div>
 	<div class="resource-footer">
 		<div class="resource-tags">
-			<?=app\components\widgets\tags\Tags::widget(['tags' =>[
+			<?= cwidget\tags\Tags::widget(['tags' =>[
 			    ['name' => '机械 ','type' => 'base'],
 			    ['name' => '生态群落 ','type' =>'base'],
 			    ['name' => '矿物字典 ','type' =>'base'],

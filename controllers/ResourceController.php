@@ -1,16 +1,21 @@
 <?php
-
 namespace app\controllers;
 
-class ResourceController extends \yii\web\Controller
+use app\models\LoginForm;
+
+class ResourceController extends \components\BaseController
 {
+
+    public $layout = 'mainResource';
+
     public function actionIndex()
     {
-        return $this->render('index');
-    }
-    
-    public function actionSearch(){
-        
+        $model = new LoginForm();
+        return $this->render('index', [
+            'model' => $model
+        ]);
     }
 
+    public function actionSearch()
+    {}
 }

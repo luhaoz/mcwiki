@@ -1,8 +1,7 @@
 <?php
 
 namespace app\controllers;
-
-class IndexController extends \yii\web\Controller
+class IndexController extends \components\BaseController
 {
     public function actionIndex()
     {   

@@ -7,10 +7,26 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'index',
+    'modules' => [
+        'redactor' => 'yii\redactor\RedactorModule',
+        'user' => [
+            // here is the config for user
+        ],
+    ],
+    'aliases' =>[
+        '@components'       => '@app/components',
+        '@cwidget'          => '@components/widgets',
+    ],
     'components' => [   
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '8Lgdwpvb8vHVM7z0iKWXkBrMyJWbIgIM',
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'itemTable' => 'auth_item',
+            'assignmentTable' => 'auth_assignment',
+            'itemChildTable' => 'auth_item_child',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -23,7 +39,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'components\auth\User',
+            'identityClass' => 'components\auth\Identity',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -74,6 +91,10 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [
+            'model'      => ['class' => 'components\giiPlus\generators\model\Generator'],
+            'controller' => ['class' => 'components\giiPlus\generators\controller\Generator'],
+        ]
     ];
 }
 

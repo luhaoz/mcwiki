@@ -13,6 +13,7 @@
 
     &.component-resource-list{
         .resource-item{
+            display:inline-block;
             .resource-title{
                 padding:0 9px;
             }
@@ -39,12 +40,14 @@
     }
 
     &.component-modal{
+        .modal-dialog-toolbar-static{
+            position: fixed;
+            width:100%;
+        }
         .modal-dialog-toolbar{
-            position: relative;
             text-align: right;
             .modal-dialog-toolbar-group{
-                position: fixed;
-                right:-64px;
+                right:-35px;
             }
         }
         .modal-dialog-block{
@@ -52,9 +55,18 @@
         }
         &.modal-fluid{
             .modal-dialog-block{
-                width: map-get($globalConfig,'base-width');
+                width: map-get($globalConfig,'base-modal-dialog-width');
             }
         }
-        
+
+        &.modal-static{
+            position: relative;
+            top: auto;
+            right: auto;
+            bottom: auto;
+            left: auto;
+            z-index: 1;
+            display: block;
+        }
     }
 }

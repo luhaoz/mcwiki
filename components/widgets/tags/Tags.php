@@ -1,5 +1,5 @@
 <?php
-namespace app\components\widgets\tags;
+namespace cwidget\tags;
 use yii\helpers\Html;
 class Tags extends \yii\bootstrap\Widget
 {

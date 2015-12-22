@@ -82,6 +82,12 @@ a.desc:after {
   padding: 10px 20px;
   margin: 0 0 15px 0; }
 
+#nprogress {
+  z-index: 2000;
+  position: fixed; }
+  #nprogress .spinner {
+    right: 30px; }
+
 .label.label-base {
   background-color: #337ab7; }
 .label.label-extend {
@@ -94,27 +100,38 @@ a.desc:after {
 
 .component.component-swiper .swiper-wrapper .swiper-slide {
   height: 427px; }
-.component.component-resource-list .resource-item .resource-title {
-  padding: 0 9px; }
-.component.component-resource-list .resource-item .resource-body {
-  height: 150px;
-  overflow: hidden; }
-.component.component-resource-list .resource-item .resource-tags .label {
-  display: inline-block;
-  margin-left: 5px; }
-.component.component-resource-list .resource-item .resource-footer {
-  padding-left: 9px;
-  padding-right: 9px;
-  padding-bottom: 9px; }
+.component.component-resource-list .resource-item {
+  display: inline-block; }
+  .component.component-resource-list .resource-item .resource-title {
+    padding: 0 9px; }
+  .component.component-resource-list .resource-item .resource-body {
+    height: 150px;
+    overflow: hidden; }
+  .component.component-resource-list .resource-item .resource-tags .label {
+    display: inline-block;
+    margin-left: 5px; }
+  .component.component-resource-list .resource-item .resource-footer {
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-bottom: 9px; }
+.component.component-modal .modal-dialog-toolbar-static {
+  position: fixed;
+  width: 100%; }
 .component.component-modal .modal-dialog-toolbar {
-  position: relative;
   text-align: right; }
   .component.component-modal .modal-dialog-toolbar .modal-dialog-toolbar-group {
-    position: fixed;
-    right: -64px; }
+    right: -35px; }
 .component.component-modal .modal-dialog-block {
   margin: 10px auto; }
 .component.component-modal.modal-fluid .modal-dialog-block {
-  width: 1170px; }
+  width: 1120px; }
+.component.component-modal.modal-static {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: 1;
+  display: block; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,8 +1,9 @@
 <?php
-namespace app\components\widgets\swiper;
+namespace cwidget\swiper;
 use yii\helpers\Html;
 use yii\base\Widget;
 use \yii\helpers\ArrayHelper;
+use \yii\base\View;
 class Swiper extends Widget
 {   
     public $itemView = null;

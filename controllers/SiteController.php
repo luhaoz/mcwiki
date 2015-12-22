@@ -49,11 +49,31 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        
+        
+        return $this->render('index', ['response' => date('H:i:s')]);
     }
-
+    
+    public function actionTime()
+    {
+        
+        if (Yii::$app->request->isPjax){
+            $this->layout = false;   
+        }
+        return $this->render('indextest', ['response' => date('H:i:s')]);
+    }
+    
+    public function actionDate()
+    {
+        if (Yii::$app->request->isPjax){
+            $this->layout = false;   
+        }
+        return $this->render('indextest', ['response' => date('Y-M-d')]);
+    }
     public function actionLogin()
     {
+        var_dump(Yii::$app->user->id);die;
+        //Yii::$app->user->logout();
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }

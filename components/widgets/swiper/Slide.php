@@ -1,5 +1,5 @@
 <?php
-namespace app\components\widgets\swiper;
+namespace cwidget\swiper;
 use Yii;
 use yii\helpers\Html;
 use yii\base\Widget;
@@ -10,7 +10,6 @@ class Slide extends Widget
     public function init()
     {
         parent::init();
-        Yii::setAlias('@widget.swiper',dirname(__DIR__).DIRECTORY_SEPARATOR.'swiper');
     }
     
     public function run()

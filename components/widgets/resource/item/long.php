@@ -6,7 +6,8 @@ use yii\helpers\Html;
 		<div class="panel-body">
 			<div class="media resource-item resource-type-mod">
 				<div class="media-left">
-					<a href="#"> <img class="media-object resource-banner"
+					<a class="item-detail-href" href="<?= Yii::$app->urlManager->createUrl('resource')?>">
+						<img class="media-object resource-banner"
 						src="http://www.atool.org/placeholder.png?size=250x200&text=方块<?= Html::encode($model['id'])?>"
 						alt="...">
 					</a>
@@ -25,7 +26,7 @@ use yii\helpers\Html;
 					</div>
 					<div class="resource-footer">
 						<div class="resource-tags">
-							<?=app\components\widgets\tags\Tags::widget(['tags' =>[
+							<?= cwidget\tags\Tags::widget(['tags' =>[
 							    ['name' => '机械 ','type' => 'base'],
 							    ['name' => '生态群落 ','type' =>'base'],
 							    ['name' => '矿物字典 ','type' =>'base'],
